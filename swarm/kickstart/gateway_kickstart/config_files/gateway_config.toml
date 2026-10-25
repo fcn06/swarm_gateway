@@ -1,0 +1,70 @@
+#################################################################
+# Swarm Standalone Gateway Server Configuration
+#################################################################
+
+[server]
+# Bind address for the Gateway server (safe loopback default)
+bind_address = "127.0.0.1:8088"
+host = "127.0.0.1"
+port = 8088
+log_level = "info"
+
+[session]
+# In-memory session store settings
+max_history_items = 100
+session_timeout_seconds = 3600
+
+[models]
+# Default model to use when not specified in client requests
+default_model = "openai/gpt-oss-20b"
+# Cross-provider fallback: if Groq is unavailable, fallback to Google or OpenAI
+fallback = [
+    "gemini-2.0-flash",
+    "gpt-4o-mini"
+]
+
+[providers.groq]
+api_url = "https://api.groq.com/openai/v1/chat/completions"
+recommended_models = [
+    "groq/llama-3.3-70b-versatile",
+    "openai/gpt-oss-20b",
+    "qwen/qwen3.8-27b"
+]
+
+[providers.google]
+api_url = "https://generativelanguage.googleapis.com/v1beta/models"
+recommended_models = [
+    "gemini-2.0-flash",
+    "gemini-1.5-pro"
+]
+
+[providers.openai]
+api_url = "https://api.openai.com/v1/chat/completions"
+recommended_models = [
+    "gpt-4o",
+    "gpt-4o-mini"
+]
+
+[providers.custom]
+# Local Ollama / vLLM / LocalAI OpenAI-compatible endpoint
+api_url = "http://localhost:11434/v1/chat/completions"
+recommended_models = [
+    "llama3.2:latest",
+    "mistral:latest",
+    "deepseek-r1:8b",
+    "qwen/qwen3.8-27b"
+]
+
+[resilience]
+# Concurrency limit for inflight requests (prevents Tokio worker thread starvation)
+max_concurrent_requests = 512
+
+# Global request execution timeout in seconds (guards against hung upstream LLM connections)
+request_timeout_seconds = 60
+
+# Circuit breaker: trip provider offline if N consecutive errors occur
+circuit_breaker_failure_threshold = 5
+
+# Reset timeout: wait N seconds before testing a tripped provider (half-open probe)
+circuit_breaker_reset_seconds = 30
+

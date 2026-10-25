@@ -1,0 +1,58 @@
+[package]
+name = "agent_core"
+version = "0.2.0"
+edition = "2024"
+
+# Should contain all traits
+
+[lib]
+crate-type = ["rlib"]
+
+[features]
+default = ["builtin-jwt", "gateway"]
+builtin-jwt = ["dep:jsonwebtoken"]
+gateway = []
+nats = ["dep:async-nats"]
+
+[dependencies]
+agent_models = { workspace = true }
+llm_api = { workspace = true }
+configuration = { workspace = true }
+
+a2a-rs = { workspace = true, features = ["http-server", "http-client"] }
+
+axum = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+jsonwebtoken = { workspace = true, optional = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+dashmap = "6.0"
+
+reqwest = { workspace = true }
+
+async-trait = { workspace = true }
+futures = { workspace = true }
+
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+uuid = { workspace = true, features = ["v4"] }
+url = { workspace = true }
+chrono = { workspace = true }
+
+redb = { workspace = true }
+async-stream = { workspace = true }
+
+toml = { workspace = true }
+
+thiserror = { workspace = true }
+clap = { workspace = true }
+tower = { workspace = true }
+http-body-util = { workspace = true }
+
+async-nats = { workspace = true, optional = true }
+
+[[bin]]
+name = "swarm_gateway"
+path = "bin/swarm_gateway.rs"
+required-features = ["gateway"]

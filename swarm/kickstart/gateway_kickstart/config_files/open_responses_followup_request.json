@@ -1,0 +1,6 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "input": "What city did I say was my favorite?",
+  "previous_response_id": "<PREVIOUS_RESPONSE_ID>",
+  "stream": false
+}

@@ -1,0 +1,59 @@
+# ==============================================================================
+# Git Ignore Configuration for Swarm Gateway Workspace
+# ==============================================================================
+
+# Environment & Secrets (NEVER commit credentials)
+.env
+*.env
+.env.*
+**/.env
+**/*.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Cargo build artifacts & compilation outputs
+target/
+target
+**/target/
+**/target
+debug/
+debug
+**/debug/
+**/debug
+
+# Cargo lock files (if libraries/workspace level)
+# Cargo.lock
+
+# Rust backup and symbol files
+**/*.rs.bk
+*.pdb
+**/*.pdb
+
+# Cargo mutation testing outputs
+**/mutants.out*/
+
+# Logs and runtime records
+*.log
+**/*.log
+
+# Local databases and runtime state
+database/
+database
+**/database/
+**/database
+
+# OS and Editor metadata
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Internal metadata
+meta/
+meta
+**/meta/
+**/meta

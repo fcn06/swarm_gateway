@@ -1,0 +1,80 @@
+[workspace]
+resolver = "3"
+
+# Used while refactoring to add agent_protocol_backbone
+members = [ 
+                "agent_core",
+                "agent_models",
+                "llm_api",
+                "configuration",]
+
+
+[workspace.dependencies]
+
+#rmcp= { git = "https://github.com/modelcontextprotocol/rust-sdk.git", features = ["client","transport-sse-client", "transport-child-process","reqwest","transport-sse-client-reqwest","auth"] ,rev="11093bc830d77717b8f24813d888238a12d7eefe" }
+#a2a-rs= { git = "https://github.com/EmilLindfors/a2a-rs.git" , features=["server","http-server","client","http-client","tracing"] , rev="2cf954129de8b4cc3b3146780877e508fa34c00c" }
+#a2a-rs= { git = "https://github.com/EmilLindfors/a2a-rs.git" , features=["server","http-server","client","http-client","tracing","ws-server"] , rev="b2d8dbf9ef0c4e5a317b63e1bbb2e092d61c0e04" }
+
+#rmcp= { git = "https://github.com/modelcontextprotocol/rust-sdk.git", features = ["client","transport-sse-client", "transport-child-process","reqwest","transport-sse-client-reqwest","auth"] ,rev="94428d543f9b97ff2d208800454131a8dc5ce1ea" }
+#a2a-rs= { git = "https://github.com/EmilLindfors/a2a-rs.git" , features=["server","http-server","client","http-client","tracing"] , rev="b2d8dbf9ef0c4e5a317b63e1bbb2e092d61c0e04" }
+
+#rmcp= { git = "https://github.com/modelcontextprotocol/rust-sdk.git", features = ["client","client-side-sse", "transport-child-process","reqwest","auth"] }
+#a2a-rs= { git = "https://github.com/EmilLindfors/a2a-rs.git" , features=["server","http-server","client","http-client","tracing"] , rev="98413da66467ee6e63fd15234946908ccb5718cb"  }
+
+rmcp="1.3"
+a2a-rs="0.2"
+
+llm_api = { path = "./llm_api" }
+agent_core = { path = "./agent_core" }
+configuration = { path = "./configuration" }
+agent_models = { path = "./agent_models" }
+
+reqwest = { version = "0.12", features = ["json","rustls-tls"] }
+rustls="0.23"
+
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+async-trait = { version = "0.1"}
+
+serde = { version = "1.0", features = ["derive","rc"] }
+serde_json = "1.0"
+anyhow = "1.0"
+
+
+thiserror = "2"
+clap = { version = "4.5", features = ["derive"] }
+
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter","fmt"] }
+
+axum = "0.8"
+
+#jsonwebtoken = { version = "10" }
+jsonwebtoken = { version = "10", features = ["aws_lc_rs"] }
+
+oauth2 = { version = "5" }
+openidconnect = { version = "4" }
+
+chrono = { version = "0.4.24", features = ["serde"] }
+rand = "0.9"
+lazy_static = "1.4"  # Used for static request ID storage in message_handler
+regex = "1.10"  # Used for text parsing in improved handler
+uuid = { version = "1", features = ["v4","serde"] }
+toml = "0.9"
+base64 = "0.22"
+url = { version = "2.4", features = ["serde"] }
+
+bon = "3"
+schemars = { version = "1.0",  features = ["chrono04"] }
+
+redb="3.1"
+tower = { version = "0.5", features = ["util", "limit", "timeout"] }
+http-body-util = "0.1"
+async-stream = "0.3"
+async-nats = "0.40"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3

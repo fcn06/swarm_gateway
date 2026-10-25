@@ -1,0 +1,5 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "input": "My favorite city is Boston.",
+  "stream": false
+}
