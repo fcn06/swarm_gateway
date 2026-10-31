@@ -8,7 +8,7 @@ echo "==========================================================================
 echo "          🛑 Stopping Swarm Standalone Gateway Server...                 "
 echo "=========================================================================="
 
-pkill -f "swarm_gateway" || true
-pkill -f "swarm_server" || true
+pkill -x "swarm_gateway" || true
+pkill -x "swarm_server" || true
 
 echo "✔ Gateway server stopped."

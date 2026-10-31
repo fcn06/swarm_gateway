@@ -147,8 +147,8 @@ echo " 3. Launching Gateway Server on $BIND_ADDRESS"
 echo "--------------------------------------------------------------------------"
 
 # Terminate any existing swarm_server or swarm_gateway process
-pkill -f "swarm_gateway" || true
-pkill -f "swarm_server" || true
+pkill -x "swarm_gateway" || true
+pkill -x "swarm_server" || true
 sleep 1
 
 setsid "$GATEWAY_BIN" --config-file "$CONFIG_FILE" --bind-address "$BIND_ADDRESS" --log-level "$LOG_LEVEL" < /dev/null > "$SWARM_ROOT/gateway.log" 2>&1 &
