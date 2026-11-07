@@ -1,3 +1,4 @@
+// INV-001: Cognitive proxies must never execute side-effecting tools or hold standing business credentials directly.
 use std::convert::Infallible;
 use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};

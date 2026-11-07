@@ -1,4 +1,4 @@
-.PHONY: all check test build launch stop test-chat test-responses clean
+.PHONY: all check test build launch stop test-chat test-responses clean release dev
 
 all: check test
 
@@ -46,3 +46,10 @@ clean:
 	@cd swarm_commons && cargo clean
 	@cd swarm && cargo clean
 	@cd swarm_services && cargo clean
+
+# Dummy targets so 'make build release' or 'make launch release' works cleanly
+release:
+	@:
+
+dev:
+	@:
